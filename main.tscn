@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqw08k280pq03"]
+
+[ext_resource type="Script" path="res://Izabela.gd" id="1_41v8e"]
+[ext_resource type="Script" path="res://NierodkaFizyka.gd" id="2_tce78"]
+[ext_resource type="Texture2D" uid="uid://d3ilnou30savu" path="res://pawel-nierodka-w-ramce.png" id="2_xavd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks6xc"]
+size = Vector2(53, 12)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(548, 319)
+script = ExtResource("1_41v8e")
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -13.0
+offset_right = 27.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Izabela"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_ks6xc")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(860, 452)
+script = ExtResource("2_tce78")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_xavd0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(1, -164, 197, -11, 3, 146, -195, -10)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
